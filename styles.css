@@ -1,0 +1,184 @@
+body .tarjeta {
+  height: 28vw; /*25*/
+  width: 15vw;
+  background-color: white;
+  margin-left: 2vw;
+  box-shadow: 2vw 2vw 12vw 3vw #f1eeee;
+  /*box-shadow: 2vw 2vw 12vw 3vw #ccc;*/
+  margin-top: -22vw;
+}
+
+body .tarjeta #cabecera h5 {
+  background: #d41d1d;
+  color: #fff;
+  font-size: 0.8vw;
+  font-family: "Finger Paint", cursive;
+  padding: 1vw;
+}
+
+body .tarjeta #message-section {
+  height: 16vw;
+  padding: 0 1vw;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+
+body .tarjeta #input-section {
+  padding: 0 1vw;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+ /* overflow: hidden;*/
+  height: 3vw;
+  width: 100%;
+}
+
+body .tarjeta #input-section input {
+  color: #000;
+  min-width: 0.5vw;
+  outline: none;
+ /* height: 2.5vw;*/
+  width: 10vw;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: solid #000 0.1vw;
+}
+
+body .tarjeta .send {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  flex: 0 0 auto;
+  margin-left: 0.5vw;
+  margin-right: 0vw;
+  padding: 0;
+  position: relative;
+  outline: none;
+}
+
+body .tarjeta .send .circle {
+  position: relative;
+ /* width: 2vw;
+  height: 2vw;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -0.3vw;
+  margin-top: 0.3vw;
+}
+/*
+body .tarjeta .send .circle i {
+  font-size: 1.2vw;
+  margin-left: -0.3vw;
+  margin-top: 0.3vw;
+}*/
+
+
+/* Código responsive. */
+
+  @media screen and (max-width: 768px) {/*768*/
+    body .tarjeta {
+      width: 80vw;
+      height: 90vw;
+      margin-left: 10vw;
+      margin-top: 0vw;
+    }
+
+    body .tarjeta #cabecera h5 {
+      font-size: 4vw;
+    }
+
+    .cabecera-image{
+      vertical-align: middle;
+      border-style: none;
+      margin-left: 25px !important;
+    }
+
+    body .tarjeta #message-section {
+      height: 60vw;
+      padding: 0 3vw; /* 0 1vw*/
+      /*overflow-y: auto;
+      /*scrollbar-width: thin;
+      scrollbar-color: var(--thumbBG) var(--scrollbarBG);*/
+    }
+
+  /*  padding: 0 0.5vw;*/
+  
+    #input-section input {
+      width: 60vw !important;
+      margin-left: 5vw;
+    
+    }
+
+    .bot-image  {
+      vertical-align: middle;
+      border-style: none;
+      margin-left: 25px !important;
+      max-width: 100% !important;
+    }
+
+
+  }
+
+
+
+  body .tarjeta #message-section .message {
+    white-space: normal;
+  }
+
+  body .tarjeta #message-section #user-message,
+  body .tarjeta #message-section #bot-message {
+    max-width: 100%;
+  }
+
+
+
+
+
+
+  
+   /* Estilos generales del contenedor de mensajes */
+   .message-container {
+     display: flex;
+     justify-content: space-between;
+     margin-bottom: 15px;
+   }
+   
+   /* Estilos para los mensajes del usuario */
+   .user-message {
+    /* text-align: right;*/
+     margin-right: auto; /* Alinea a la derecha automáticamente */
+     background-color: #d9edf7; /* Fondo del mensaje del usuario */
+     padding: 8px;
+     border-radius: 10px;
+     border: 1.5px solid #000;
+     border-radius: 1.5vw 1.5vw 1.5vw 1.5vw;
+   
+   }
+   
+   /* Estilos para los mensajes del chatbot */
+   
+   .bot-message {
+     display: flex;
+     margin-left: auto; /* Alinea a la izquierda automáticamente */
+     align-items: center; /* Centra verticalmente */
+     text-align: left;
+   }
+   
+   .bot-content {
+     display: flex;
+     align-items: center;
+     text-align: left;
+     border-radius: 1.5vw 1.8vw 1.5vw 0; /* Borde circular solo en los extremos */
+     background-color: #af38387a !important; /* Fondo del mensaje del chatbot */
+     padding: 8px;
+   }
+   
+   .bot-image {
+     margin-left: 15px; /* Espacio entre la imagen y el texto */
+   }
+ 
+
+
