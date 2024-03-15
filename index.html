@@ -135,7 +135,7 @@
 
     <div class='tarjeta'>
         <div id="cabecera">
-            <h5>  <img src="assets/chatbot.png"  class="cabecera-image" width="72px" /> Chatbot  </h5>   
+            <h5>  <img src="assets/chatbot.png"  class="cabecera-image" width="72px" /> Chatbot Ugelito05 </h5>   
         </div>
 
         <div id="message-section" class="mb-3" ref="chatRef">
@@ -153,12 +153,16 @@
                 class=""
                 placeholder="Escriba su mensaje"
                 value=""
+                required
                 onkeydown="handleKeyPress(event)"
+                oninput="manejarEstadoBoton()"
             />
             <button
-                type="button"
+                id="boton-enviar"
+                type="submit"
                 class="send"
                 onclick="enviarMensaje()"
+                disabled
             >
                 <div class="circle">  <img src="assets/enviar.png" class="bot-image"  width="32px" />  </div>
             </button>
@@ -173,18 +177,41 @@
     let mensaje = document.getElementById('mensaje');
     let chat= document.getElementById('chat');
 
-   
 
-        function handleKeyPress(event) {
-            if (event.key === 'Enter') enviarMensaje();
+         // Función para manejar el botón de enviar
+        function manejarEstadoBoton() {
+        let botonEnviar = document.getElementById('boton-enviar');
+        
+            // Habilitar el botón de enviar si el campo de entrada tiene contenido; de lo contrario, deshabilitarlo
+            if (mensaje.value.trim() !== '') {
+                botonEnviar.disabled = false;
+            } else {
+                botonEnviar.disabled = true;
+            }
         }
-    
+
+        // Función para manejar la pulsación de teclas dentro del campo de entrada
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                // Evitar que se envíe el formulario si el campo de entrada está vacío
+                if (mensaje.value.trim() === '') {
+                    event.preventDefault();
+                } else {
+                    enviarMensaje();
+                }
+            }
+        }
+
         async function enviarMensaje() {
 
-            chat.innerHTML +="<div class='bg-light p-2'><p>yo:"+ mensaje.value +"</p> </div>"
+             // Obtener el valor del input y convertirlo a minúsculas
+            let mensajeValor = mensaje.value.toLowerCase();
+            //console.log("mensaje minuscula",mensajeValor)
+
+            chat.innerHTML +="<div class='bg-light p-2'><p>yo: "+ mensajeValor +"</p> </div>"
 
             let data= new FormData()
-            data.append("mensaje", mensaje.value)
+            data.append("mensaje", mensajeValor)
 
             mensaje.value="";
             /* conexión a la API del backend*/
@@ -193,15 +220,6 @@
                 body:data,
             
             })
-
-            /*if(res.ok){
-                let respuesta = await res.text()
-                console.log('Respuesta recibida: '+ respuesta)
-                chat.innerHTML +=
-                  "<div class=''> <img src='assets/chatbot.png' alt='Imagen de Chatbot' width='32px' class='bot-image'/> <span> Ugelito05 </span>"
-                   + "<div class='bg-dark bot-content text-white'> <p>" + respuesta +" </p> </div>"
-           
-            }*/
 
             if (res.ok) {
             let respuesta = await res.text();
@@ -216,9 +234,11 @@
                     ultimoMensaje.scrollIntoView({ behavior: 'smooth' });
                 }
             }
-            
+
+            // Deshabilitar el botón de enviar si el campo de entrada está vacío
+             manejarEstadoBoton();
         }
- 
+
     </script>
     
    
